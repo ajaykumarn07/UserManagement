@@ -1,9 +1,11 @@
 ﻿using AuthSystem.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using UserManagementSystem.Models;
 
 namespace UserManagementSystem.Controllers
 {
+    [Authorize]
     public class UserlistController : Controller
     {
         private readonly AuthDbContext _db;
