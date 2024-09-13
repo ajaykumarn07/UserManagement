@@ -1,0 +1,28 @@
+﻿@model UserManagementSystem.Models.UserList
+
+@{
+    ViewData["Title"] = "User Details";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <h2>@Model.FirstName @Model.LastName</h2>
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Email:</strong> @Model.Email</li>
+                <li class="list-group-item"><strong>Phone:</strong> @Model.PhoneNumber</li>
+                <li class="list-group-item"><strong>Address:</strong> @Model.Address</li>
+                <li class="list-group-item"><strong>City:</strong> @Model.City</li>
+                <li class="list-group-item"><strong>State:</strong> @Model.State</li>
+                <li class="list-group-item"><strong>Pincode:</strong> @Model.Pincode</li>
+                <li class="list-group-item"><strong>Username:</strong> @Model.UserName</li>
+                <li class="list-group-item"><strong>Status:</strong> @Model.Status</li>
+            </ul>
+        </div>
+        <div class="col-md-4 mb-3 d-flex flex-row gap-2">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning w-100">Edit</a>
+            <a asp-action="Index" class="btn btn-secondary w-100">Back to List</a>
+        </div>
+
+    </div>
+</div>
