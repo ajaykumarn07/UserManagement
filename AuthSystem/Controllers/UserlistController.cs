@@ -6,6 +6,7 @@ using UserManagementSystem.Models;
 namespace UserManagementSystem.Controllers
 {
     [Authorize]
+    [Route("userlist")]
     public class UserlistController : Controller
     {
         private readonly AuthDbContext _db;
@@ -14,12 +15,15 @@ namespace UserManagementSystem.Controllers
         {
             _db = db;
         }
+
+        [Route("")]
         public IActionResult Index()
         {
             List<UserList> userLists = _db.UserLists.ToList();
             return View(userLists);
         }
 
+        [Route("details/{id:int}")]
         public IActionResult Details(int? id)
         {
             UserList? userList = _db.UserLists.Find(id);
@@ -29,11 +33,14 @@ namespace UserManagementSystem.Controllers
             }
             return View(userList);
         }
+
+        [Route("create")]
         public IActionResult Create()
         {
             return View();
         }
         [HttpPost]
+        [Route("create")]
         public IActionResult Create(UserList userList)
         {
             if (_db.UserLists.Any(u => u.Email!.Equals(userList.Email)))
@@ -53,6 +60,7 @@ namespace UserManagementSystem.Controllers
             return View();
         }
 
+        [Route("edit/{id:int}")]
         public IActionResult Edit(int? id)
         {
             UserList? userList = _db.UserLists.Find(id);
@@ -64,6 +72,7 @@ namespace UserManagementSystem.Controllers
         }
 
         [HttpPost]
+        [Route("edit/{id:int}")]
         public IActionResult Edit(UserList userList)
         {
             if (_db.UserLists.Any(u => u.Email!.Equals(userList.Email) && u.Id != userList.Id))
@@ -82,6 +91,7 @@ namespace UserManagementSystem.Controllers
             return View();
         }
 
+        [Route("delete/{id:int}")]
         public IActionResult Delete(int? id)
         {
             UserList? userList = _db.UserLists.Find(id);
